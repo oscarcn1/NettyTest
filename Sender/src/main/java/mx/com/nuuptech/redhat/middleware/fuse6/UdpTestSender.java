@@ -14,10 +14,10 @@ public class UdpTestSender {
 		LOGGER.info("Starting test at " + new SimpleDateFormat("H:m:s.S").format(new Date()));
 		Sender sender = new Sender();
 		Generator generator = new Generator();
-		for(long sequence = 1; sequence <= 34560000; sequence = sequence + 4) {
+		for(long sequence = 1; sequence <= 35560000; sequence = sequence + 4) {
 			sender.send(generator.generate(sequence));
 			try {
-				TimeUnit.MILLISECONDS.sleep(3);
+				TimeUnit.MILLISECONDS.sleep(2);
 			} catch (InterruptedException e) {
 				LOGGER.error("Error sleeping" , e);
 			}
