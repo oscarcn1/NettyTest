@@ -1,0 +1,341 @@
+#########################################################################
+## DEFINITION OF DATA FORMAT PARSER
+#DATA-TYPES
+#- T_Type  : [1,1,1]
+# -T_Type - name of field
+#  [1,1,1]  POS INITIAL, POS FINAL , DATA TYPE
+#   DATA-TYPES
+#   1 - string / Alpha
+#   2 - Integer
+#########################################################################
+        formats:
+         - T_Type                               : [1,1,1]
+         - T_Second                             : [2,4,2]
+         - S_Type                               : [1,1,1]
+         - S_Timestamp                          : [2,4,2]
+         - S_Group                              : [6,8,1]
+         - S_EventCode                          : [14,1,1]
+         - S_Orderbook                          : [15,4,2]
+         - L_Type                               : [1,1,1]
+         - L_Timestamp                          : [2,4,2]
+         - L_TickSizeTableId                    : [6,4,2]
+         - L_TickSize                           : [10,4,2]
+         - L_PriceStart                         : [14,4,2]
+         - M_Type                               : [1,1,1]
+         - M_Timestamp                          : [2,4,2]
+         - M_TickSizeTableId                    : [6,4,2]
+         - M_TickSize                           : [10,8,2]
+         - M_QuantityStart                      : [18,8,2]
+         - R_Type                               : [1,1,1]
+         - R_Timestamp                          : [2,4,2]
+         - R_Orderbook                          : [6,4,2]
+         - R_ISIN                               : [10,12,1]
+         - R_SecCode                            : [22,15,1]
+         - R_Currency                           : [37,3,1]
+         - R_Group                              : [40,8,1]
+         - R_MinimumQuantity                    : [48,8,2]
+         - R_QuantityTickSizeTableId            : [56,4,2]
+         - R_QuantityDecimals                   : [60,4,2]
+         - R_PriceTickSizeTableId               : [64,4,2]
+         - R_PriceDecimals                      : [68,4,2]
+         - R_DelistingOrMaturityDate            : [72,4,2]
+         - R_DelistingTime                      : [76,4,2]
+         - R_TurnoverRatio                      : [80,1,1]
+         - R_QuotationBasis                     : [81,3,1]
+         - R_Instrument                         : [84,12,1]
+         - R_ListingType                        : [96,1,1]
+         - R_ListingExchange                    : [97,4,1]
+         - F_Type                               : [1,1,1]
+         - F_Timestamp                          : [2,4,2]
+         - F_ParticipantId                      : [6,4,2]
+         - F_ParticipantCode                    : [10,12,2]
+         - H_Type                               : [1,1,1]
+         - H_Timestamp                          : [2,4,2]
+         - H_Orderbook                          : [6,4,2]
+         - H_TradingState                       : [10,1,1]
+         - H_Reason                             : [11,1,2]
+         - X_Type                               : [1,1,1]
+         - X_Timestamp                          : [2,4,2]
+         - X_Orderbook                          : [6,4,2]
+         - X_ReferencePrice                     : [10,4,2]
+         - X_PriceType                          : [14,1,1]
+         - X_Reason                             : [15,1,1]
+         - A_Type                               : [1,1,1]
+         - A_Timestamp                          : [2,4,2]
+         - A_OrderNumber                        : [6,8,2]
+         - A_OrderVerb                          : [14,1,1]
+         - A_Quantity                           : [15,8,2]
+         - A_Orderbook                          : [23,4,2]
+         - A_Price                              : [27,4,2]
+         - a_Type                               : [1,1,1]
+         - a_Timestamp                          : [2,4,2]
+         - a_OrderNumber                        : [6,8,2]
+         - a_OrderVerb                          : [14,1,1]
+         - a_Quantity                           : [15,8,2]
+         - a_Orderbook                          : [23,4,2]
+         - a_Price                              : [27,4,2]
+         - a_ParticipantId                      : [31,4,2]
+         - E_Type                               : [1,1,1]
+         - E_Timestamp                          : [2,4,2]
+         - E_OrderNumber                        : [6,8,2]
+         - E_ExecutedQuantity                   : [14,8,2]
+         - E_MatchNumber                        : [22,8,2]
+         - E_TradeIndicator                     : [30,1,1]
+         - e_Type                               : [1,1,1]
+         - e_Timestamp                          : [2,4,2]
+         - e_OrderNumber                        : [6,8,2]
+         - e_ExecutedQuantity                   : [14,8,2]
+         - e_MatchNumber                        : [22,8,2]
+         - e_TradeIndicator                     : [30,1,1]
+         - e_ParticipantId                      : [31,4,2]
+         - C_Type                               : [1,1,1]
+         - C_Timestamp                          : [2,4,2]
+         - C_OrderNumber                        : [6,8,2]
+         - C_ExecutedQuantity                   : [14,8,2]
+         - C_MatchNumber                        : [22,8,2]
+         - C_TradeIndicator                     : [30,1,1]
+         - C_Printable                          : [31,1,1]
+         - C_ExecutionPrice                     : [32,4,2]
+         - P_Type                               : [1,1,1]
+         - P_Timestamp                          : [2,4,2]
+         - P_ExecutedQuantity                   : [6,8,2]
+         - P_Orderbook                          : [14,4,2]
+         - P_Printable                          : [18,1,1]
+         - P_ExecutionPrice                     : [19,4,2]
+         - P_MatchNumber                        : [23,8,2]
+         - P_TradeIndicator                     : [31,1,1]
+         - B_Type                               : [1,1,1]
+         - B_Timestamp                          : [2,4,2]
+         - B_MatchNumber                        : [6,8,2]
+         - B_Reason                             : [14,1,1]
+         - D_Type                               : [1,1,1]
+         - D_Timestamp                          : [2,4,2]
+         - D_OrderNumber                        : [6,8,2]
+         - U_Type                               : [1,1,1]
+         - U_Timestamp                          : [2,4,2]
+         - U_OriginalOrderNumber                : [6,8,2]
+         - U_NewOrderNumber                     : [14,8,2]
+         - U_Quantity                           : [22,8,2]
+         - U_Price                              : [30,4,2]
+         - I_Type                               : [1,1,1]
+         - I_Timestamp                          : [2,4,2]
+         - I_TheoreticalOpeningQuantity         : [6,8,2]
+         - I_Orderbook                          : [14,4,2]
+         - I_BestBid                            : [18,4,2]
+         - I_BestOffer                          : [22,4,2]
+         - I_TheoreticalOpeningPrice            : [26,4,2]
+         - I_CrossType                          : [30,1,1]
+         - G_Type                               : [1,1,1]
+         - G_SequenceNumber                     : [2,8,2]
+         - Q_Type                               : [1,1,1]
+         - Q_Timestamp                          : [2,4,2]
+         - Q_Orderbook                          : [6,4,2]
+         - Q_BestBid                            : [10,4,2]
+         - Q_BestBidSize                        : [14,8,2]
+         - Q_BestOffer                          : [22,4,2]
+         - Q_BestOfferSize                      : [26,8,2]
+         - N_Type                               : [1,1,1]
+         - N_Timestamp                          : [2,4,2]
+         - N_Orderbook                          : [6,4,2]
+         - N_NewsId                             : [10,4,2]
+         - N_ParticipantId                      : [14,4,2]
+         - N_Title                              : [18,81,1]
+         - N_Reference                          : [99,256,1]
+         - N_NewsText                           : [355,512,1]
+        messages:
+            T:
+              name: Time Stamp Seconds
+              fields:
+               - T_Type
+               - T_Second
+            S:
+              name: System Event Message
+              fields:
+               - S_Type
+               - S_Timestamp
+               - S_Group
+               - S_EventCode
+               - S_Orderbook
+            L:
+              name: Price Tick Size
+              fields:
+               - L_Type
+               - L_Timestamp
+               - L_TickSizeTableId
+               - L_TickSize
+               - L_PriceStart
+            M:
+              name: Quantity Tick Size
+              fields:
+               - M_Type
+               - M_Timestamp
+               - M_TickSizeTableId
+               - M_TickSize
+               - M_QuantityStart	
+            R:
+              name: Orderbook Directory
+              fields:
+               - R_Type
+               - R_Timestamp
+               - R_Orderbook
+               - R_ISIN
+               - R_SecCode
+               - R_Currency
+               - R_Group
+               - R_MinimumQuantity
+               - R_QuantityTickSizeTableId
+               - R_QuantityDecimals
+               - R_PriceTickSizeTableId
+               - R_PriceDecimals
+               - R_DelistingOrMaturityDate
+               - R_DelistingTime
+               - R_TurnoverRatio
+               - R_QuotationBasis
+               - R_Instrument
+               - R_ListingType
+               - R_ListingExchange
+            F: 
+              name: Participant Directory
+              fields:
+               - F_Type
+               - F_Timestamp
+               - F_ParticipantId
+               - F_ParticipantCode		
+            H:
+              name: Orderbook Trading Action
+              fields:
+               - H_Type
+               - H_Timestamp        
+               - H_Orderbook
+               - H_TradingState
+               - H_Reason
+            X:
+              name: TV Orderbook Reference Price
+              fields:
+               - X_Type
+               - X_Timestamp
+               - X_Orderbook
+               - X_ReferencePrice
+               - X_PriceType
+               - X_Reason
+            A:
+              name: Add Order Message
+              fields:
+               - A_Type
+               - A_Timestamp
+               - A_OrderNumber
+               - A_OrderVerb
+               - A_Quantity
+               - A_Orderbook
+               - A_Price	
+            a:
+              name: Add Order with Participant Id Message
+              fields:
+               - a_Type
+               - a_Timestamp
+               - a_OrderNumber
+               - a_OrderVerb
+               - a_Quantity
+               - a_Orderbook
+               - a_Price	
+               - a_ParticipantId
+            E:
+              name: Order Executed
+              fields:
+               - E_Type
+               - E_Timestamp
+               - E_OrderNumber
+               - E_ExecutedQuantity
+               - E_MatchNumber
+               - E_TradeIndicator
+            e:
+              name: Order Executed with Participant Id
+              fields:
+               - e_Type
+               - e_Timestamp
+               - e_OrderNumber
+               - e_ExecutedQuantity
+               - e_MatchNumber
+               - e_TradeIndicator
+               - e_ParticipantId
+            C:
+              name: Order Executed With Price Message
+              fields:
+               - C_Type
+               - C_Timestamp
+               - C_OrderNumber
+               - C_ExecutedQuantity
+               - C_MatchNumber
+               - C_TradeIndicator
+               - C_Printable
+               - C_ExecutionPrice
+            P:
+              name: Trade Message
+              fields:
+               - P_Type
+               - P_Timestamp
+               - P_ExecutedQuantity
+               - P_Orderbook
+               - P_Printable
+               - P_ExecutionPrice
+               - P_MatchNumber
+               - P_TradeIndicator
+            B:
+              name: Broken Trade Message
+              fields:
+               - B_Type
+               - B_Timestamp
+               - B_MatchNumber
+               - B_Reason
+            D:
+              name: Order Delete Message
+              fields:
+               - D_Type
+               - D_Timestamp
+               - D_OrderNumber
+            U:
+              name: Order Replace Message
+              fields:
+               - U_Type
+               - U_Timestamp
+               - U_OriginalOrderNumber
+               - U_NewOrderNumber
+               - U_Quantity
+               - U_Price
+            I:
+              name: Indicative Price/Quantity Message
+              fields:
+               - I_Type
+               - I_Timestamp
+               - I_TheoreticalOpeningQuantity
+               - I_Orderbook
+               - I_BestBid
+               - I_BestOffer
+               - I_TheoreticalOpeningPrice
+               - I_CrossType
+            G:
+              name: GLIMPSE Snapshot Message
+              fields:
+               - G_Type
+               - G_SequenceNumber
+            Q:
+              name: Best Bid Offer Message
+              fields:
+               - Q_Type
+               - Q_Timestamp
+               - Q_Orderbook
+               - Q_BestBid
+               - Q_BestBidSize
+               - Q_BestOffer
+               - Q_BestOfferSize
+            N:
+              name: News Message
+              fields:
+               - N_Type
+               - N_Timestamp
+               - N_Orderbook
+               - N_NewsId
+               - N_ParticipantId
+               - N_Title
+               - N_Reference
+               - N_NewsText
