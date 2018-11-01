@@ -17,7 +17,7 @@ public class UdpTestSender {
 		for(long sequence = 1; sequence <= 34560000; sequence = sequence + 4) {
 			sender.send(generator.generate(sequence));
 			try {
-				TimeUnit.MILLISECONDS.sleep(4);
+				TimeUnit.MILLISECONDS.sleep(3);
 			} catch (InterruptedException e) {
 				LOGGER.error("Error sleeping" , e);
 			}

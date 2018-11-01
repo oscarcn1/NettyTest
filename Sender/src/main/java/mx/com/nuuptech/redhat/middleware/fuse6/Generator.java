@@ -17,7 +17,6 @@ public class Generator {
 	public byte[] generate(Long sequence) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
-			//baos.write(this.convertShortToByteArray((short) 27));		//Longitud total del paquete 2 bytes
 			baos.write(this.generateSession());							//Sesion 10 bytes
 			baos.write(this.convertLongToByteArray(sequence));			//Secuencia 8 bytes
 			baos.write(this.convertShortToByteArray((short) 4));		//Numero de mensajes en el paquete 2 bytes
@@ -32,7 +31,6 @@ public class Generator {
 		} catch (IOException ioe) {
 			LOGGER.error("Error creating byte array", ioe);
 		}
-		//LOGGER.info("Generating " + baos.size() + " bytes >>" + new String(baos.toByteArray()));
 		return baos.toByteArray();
 	}
 
