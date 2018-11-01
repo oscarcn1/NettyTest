@@ -13,11 +13,15 @@ public class UdpTestSender {
 	public static void main(String[] args) {
 		LOGGER.info("Starting test at " + new SimpleDateFormat("H:m:s.S").format(new Date()));
 		Sender sender = new Sender();
+		Sender2 sender2 = new Sender2();
 		Generator generator = new Generator();
-		for(long sequence = 1; sequence <= 35560000; sequence = sequence + 4) {
-			sender.send(generator.generate(sequence));
+		long marchOrder=199008170000000000L;
+		for(long sequence = 1; sequence <= 120000; sequence = sequence + 6) {
+			sender.send(generator.generate(sequence,marchOrder));
+			sender2.send(generator.generate(sequence,marchOrder));
+			marchOrder=marchOrder+2;
 			try {
-				TimeUnit.MILLISECONDS.sleep(2);
+				TimeUnit.MILLISECONDS.sleep(1);
 			} catch (InterruptedException e) {
 				LOGGER.error("Error sleeping" , e);
 			}
